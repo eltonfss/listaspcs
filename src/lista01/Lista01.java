@@ -1,6 +1,9 @@
 package lista01;
 
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -275,14 +278,109 @@ public class Lista01 {
     
     public void exercicio12(){
         
+        Scanner scanner = new Scanner(System.in);
+        
+        double distancia = 0;
+        double combustivel = 0;
+        double somaDistancias = 0;
+        double somaCombustivel = 0;
+        
+        DecimalFormat df = new DecimalFormat("#,###.00");  
+        
+        while(distancia != -1){
+                System.out.print("Entre distância percorrida (em km) ou -1 para encerrar:");
+                somaDistancias += distancia = scanner.nextDouble();
+                if(distancia != -1){
+                    System.out.print("Entre quantidade de combustível (em litros):");
+                    somaCombustivel += combustivel = scanner.nextDouble();
+                    System.out.println("Cosumo = "+df.format(distancia/combustivel)+" km/l");
+                    
+                    System.out.println("");
+                }else{
+                    somaDistancias++;
+                }
+        }
+        
+        System.out.println("somaDistancias = "+somaDistancias );
+        System.out.println("somaCombustivel = "+somaCombustivel);
+        
+        System.out.println("Consumo Médio: "+df.format(somaDistancias/somaCombustivel)+" km/l");
     }
     
     public void exercicio13(){
-        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o valor máximo da sequência fibonnaci: ");
+        int valorMaximo = scanner.nextInt();
+        int fib0 = 0;
+        System.out.println("Fib(0) = "+fib0);
+        int fib1 = 1;
+        System.out.println("Fib(1) = "+fib1);
+        int fibn = fib0 + fib1;
+        int n = 2;
+        while(fibn < valorMaximo){
+            System.out.println("Fib("+n+") = "+fibn);
+            fib0 = fib1;
+            fib1 = fibn;
+            fibn = fib0 + fib1;
+        }
     }
     
     public void exercicio14(){
+        Scanner scanner = new Scanner(System.in);
+        DecimalFormat df = new DecimalFormat("#,###.00");  
+        int quantidadeA = 0;
+        int quantidadeB = 0;
+        int somaQuantidadeA = 0;
+        int somaQuantidadeB = 0;
+        double precoUnitarioA = 0.0;
+        double precoUnitarioB = 0.0;
+        double totalA = 0.0;
+        double totalB = 0.0;
+        double somaTotalA = 0.0;
+        double somaTotalB = 0.0;
+        char continuar = 's';
         
+        while(continuar == 's'){
+            System.out.println("");
+            //Ler quantidades
+            System.out.print("Digite a quantidade desejada do produto A:");
+            somaQuantidadeA += quantidadeA = scanner.nextInt();
+            System.out.print("Digite a quantidade desejada do produto B:");
+            somaQuantidadeB += quantidadeB = scanner.nextInt();
+            
+            //Calcular preço único
+            if(quantidadeA <= 5){
+                precoUnitarioA = 10.00;
+            }else{
+                precoUnitarioA = 8.00;
+            }
+            if(quantidadeB <= 10){
+                precoUnitarioB = 20.00;
+            }else if(quantidadeB <= 20){
+                precoUnitarioB = 18.00;
+            }else{
+                precoUnitarioB = 16.00;
+            }
+            
+            //Calcular totais e imprimir
+            somaTotalA += totalA = quantidadeA*precoUnitarioA;
+            somaTotalB += totalB = quantidadeB*precoUnitarioB;
+            System.out.println("");
+            System.out.println("A: Quantidade: "+quantidadeA+"; Preço Unitário: "+precoUnitarioA+"; Total: "+totalA);
+            System.out.println("B: Quantidade: "+quantidadeB+"; Preço Unitário: "+precoUnitarioB+"; Total: "+totalB);
+            System.out.println("Total Geral: "+(totalA+totalB));
+            System.out.println("");
+            System.out.print("Novo pedido (s/n)? ");
+            continuar = scanner.next().charAt(0);
+            
+            
+        }
+        
+        System.out.println("Total dos Pedidos:");
+        System.out.println("A: Quantidade:"+somaQuantidadeA+"; Total: "+df.format(somaTotalA));
+        System.out.println("B: Quantidade:"+somaQuantidadeB+"; Total: "+df.format(somaTotalB));
+        System.out.println("Total Geral: "+df.format(somaTotalA+somaTotalB));
+
     }
     
 }
