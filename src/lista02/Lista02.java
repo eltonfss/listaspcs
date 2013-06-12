@@ -1,8 +1,14 @@
 package lista02;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.math.MathContext;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,28 +150,105 @@ public class Lista02 {
         System.out.println("Iniciais: "+iniciais);
     }
     
-    public void exercicio5(){
-        
+    public void exercicio5() throws FileNotFoundException, IOException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite seu nome: ");
+        String nome = scanner.nextLine();
+        StringBuilder pagina = new StringBuilder();
+        pagina.append("<html>");
+        pagina.append("\n\t<head>");
+        pagina.append("\n\t\t<title> Teste Programa Boa Noite - "+nome+"</title>");
+        pagina.append("\n\t</head>");
+        pagina.append("\n\t<body>");
+        pagina.append("\n\t\t<h2> Boa noite "+nome+"</h2>");
+        pagina.append("\n\t</body>");
+        pagina.append("\n</html>");
+        FileOutputStream arquivo = new FileOutputStream("pagina.html");
+        arquivo.write(pagina.toString().getBytes());
+        //Desktop.getDesktop().open(new File("pagina.html"));
+        System.out.println(pagina);
     }
     
     public void exercicio6(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite um texto:");
+        String texto = scanner.nextLine();
+        String[] palavras = texto.split(" ");
+        int nCaracteres = texto.length();
+        int nPalavras = palavras.length;
         
+        System.out.println("Numero de caracteres do texto: " + nCaracteres);
+        System.out.println("Numero de palavras: " + nPalavras);
     }
     
     public void exercicio7(){
-        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite um texto:");
+        String texto = scanner.nextLine();
+        String[] palavras = texto.split(" ");
+        System.out.println("Texto reformatado: ");
+        for (String palavra : palavras) {
+            if(!palavra.equals("")){
+                System.out.print(palavra.trim()+" ");
+            }
+        }
     }
     
     public void exercicio8(){
+        Map<String,String> mapa = new HashMap<String, String>();
+        mapa.put("RJ", "Rio de Janeiro");
+        mapa.put("SP", "São Paulo");
+        mapa.put("ES", "Espírito Santo");
+        mapa.put("MG", "Mínas Gerais");
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite a sigla do estado");
+        String sigla = scanner.next();
+        System.out.println("Estado: "+mapa.get(sigla));
         
     }
     
     public void exercicio9(){
-        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite um texto:");
+        String texto = scanner.nextLine().toUpperCase();
+        String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","X","Z"};
+        int contador;
+        for (String letra : alfabeto) {
+            contador = 0;
+            System.out.print("Número de ocorrências de "+letra+": ");
+            while(texto.contains(letra)){
+                texto = texto.replaceFirst(letra, "");
+                contador++;
+            }
+            System.out.println(contador);
+        }
     }
     
     public void exercicio10(){
+        int multiplos[][] = new int[10][101];
+        int qtdeMultiplos[] = new int[10]; 
+        int somaMultiplos[] = new int[10];
+        for(int i = 1; i <= 10; i++){
+            qtdeMultiplos[i-1] = 0;
+            somaMultiplos[i-1] = 0;
+            for(int j = i; j <= 100; j++){
+                if(j%i == 0){
+                    somaMultiplos[i-1] += multiplos[i-1][qtdeMultiplos[i-1]++] = j;
+                }
+            }
+        }
         
-    }
-    
-}
+        for(int i = 0; i < 10; i++){
+            System.out.print((i+1)+": ");
+            for(int j = 0; j < qtdeMultiplos[i]-1; j++){
+                System.out.print(multiplos[i][j]+", ");
+            } 
+            System.out.println(multiplos[i][qtdeMultiplos[i]-1]);
+        }
+        
+        for(int i = 0; i < 10; i++){
+            System.out.println("Número de múltiplos de "+(i+1)+": "+qtdeMultiplos[i]);
+            System.out.println("Soma dos múltiplos de "+(i+1)+": "+somaMultiplos[i]);
+        }
+}}
