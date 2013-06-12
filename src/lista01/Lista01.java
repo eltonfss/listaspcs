@@ -160,22 +160,10 @@ public class Lista01 {
     }    
     public void exercicio7(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o código do estado cívil: ");
+        System.out.println("Digite o código do estado cívil: \n 01 - Solteiro \n 02 - Casado \n 03 - Divorciado \n 04 - Viúvo");
         int codigo = scanner.nextInt();
-        switch(codigo){
-            case 1:
-                System.out.println("Solteiro");
-                break;
-            case 2:
-                System.out.println("Casado");
-                break;
-            case 3:
-                System.out.println("Divorciado");
-                break;
-            case 4:
-                System.out.println("Viúvo");
-                break;
-        }
+        String[] opcoes = {"Solteiro","Casado","Divorciado","Viúvo"};
+        System.out.println(opcoes[codigo-1]);
     }
     
     public void exercicio8(){
