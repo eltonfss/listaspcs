@@ -1,5 +1,7 @@
 package lista04.exercicio2;
 
+import com.sun.org.apache.bcel.internal.generic.IMPDEP1;
+
 public class Main {
     
     public static void main(String[] args) {
@@ -8,6 +10,10 @@ public class Main {
         solidos[1] = new Esfera(10);
         solidos[2] = new Paralelepipedo(10, 10, 10);
         solidos[3] = new Paralelepipedo(3, 3, 3);
+        imprimir(solidos);
+    }
+    
+    public static void imprimir(Solido[] solidos){
         double volumeTotal = 0.0;
         double massaTotal = 0.0;
         for (Solido solido : solidos) {
