@@ -5,4 +5,4 @@ public class Main {
         FolhaPagamento f = new FolhaPagamento();
         f.imprimir();
     }
-}
+} 
